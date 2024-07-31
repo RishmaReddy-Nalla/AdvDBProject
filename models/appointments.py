@@ -6,16 +6,30 @@ def get_appointments(collection):
         conn = MongoConn().connect()
         
         patient_ids = [patient['_id'] for patient in conn['Patients'].find()]
-        pipeline = {
+        pipeline = [{
             "$lookup" : {
                 "from" : "Patients",
-                "localField": "patientID",
-                
+                "localField": "patiendID",
+                "foreignField": "_id",
+                "as" : "patient_info"                
             }
-        }
-        appointments = conn[collection].find({
-            "patientID" : {"$in" :patient_ids }
-        }).limit(10)
+            },
+            {
+                "$unwind" : "$patient_info"
+            },
+            {
+                "$project": {
+                    "appointment_id": "$_id",
+                    "first_name" : "$patient_info.firstName",
+                    "last_name" : "$patient_info.lastName",
+                    "appointment_time" : "$appointmentDate",
+                    "reason": "$reason",
+                    "status" : "$status",
+                    "notes": "$notes"
+                }
+            }  
+        ]
+        appointments = conn.appointments.aggregate(pipeline=pipeline)
         appointments = [appointment for appointment in appointments]
         return appointments
     except Exception as e:
