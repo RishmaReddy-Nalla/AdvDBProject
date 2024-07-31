@@ -3,11 +3,15 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-    <div class="content" id="home-screen">
-        <h1>Welcome to My Website!</h1>
-        <p>This is the home page.</p>
+    <div class="container">
+        <div class="row">
+            {% for appoint in appointment %}
+            <div class="col-md-4 card mb-4">
+                <p> </p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    <a href="{{ url_for('login') }}">Login</a>
 {% endblock %}
 {% block sidebar %} 
     <div class="container-fluid">
