@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
+#sidebar {
+    height: 100vh;
+    overflow-y: auto;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #sidebar.collapsed {
+    width: 50px;
+  }
+  
+  #content {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #sidebar.collapsed ~ #content {
+    margin-left: 50px;
+  }
+  
+body {
+  margin: 0;
+}
+
+main {
+  background-image: url('../images/bg-image.jpg');
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+#hamburger {
+  fill: white;
+  height: 38px;
+  width: 38px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#sidebar {
+  width: 0px;
+  height: 100vh;
+  background-color: rgb(245,245,245);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  overflow: hidden;
+  transition: width 0.5s ease;
+  white-space: nowrap;
+}
+
+.sidebar-item {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  padding: 1em;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: inset;
+
+}
+
+.sidebar-item svg {
+  flex-shrink: 0;
+}
+
+#icon {
+  fill: black;
+}
+.sidebar-item:hover {
+  background-color: rgb(212, 212, 212);
+}
+
+.sidebar-item > div {
+  padding: 0 1em;
+
+}
+
+#overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0,0,0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: none;
+}
+
+#home-screen {
+  text-align: center;
+  text-decoration: solid;
+
+}
+
+#home-screen h1 {
+  size: 1em;
+  color: azure;
+}
+
+#login-register {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  gap: 10px;
+  grid-template-rows: repeat(3, 2fr);
+
+}
+
+.login-tabs, .tab-content {
+  padding: 5%;
+  background-color: rgba(187, 186, 186, 0.9);
+  grid-column: 2;
+  grid-row: 2;
+  border-radius: 5%;
+}
+.tab-content > #login-text {
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+#register-tab {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 2fr);
+  gap: 10px;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.register-content {
+  padding: 5%;
+  background-color: rgba(187, 186, 186, 0.9);
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row: 2;
+  border-radius: 5%;
+}
+
+.register-content > #register-text {
+  text-align:  center;
+  font-weight: bold;
+  padding-bottom: 15px;
+}
+
+#register-login-text {
+  text-align: center;
+}
